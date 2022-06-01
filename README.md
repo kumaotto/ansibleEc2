@@ -1,6 +1,6 @@
 # ansibleEc2
 
-## first, install Ansible
+first, install Ansible
 ```
 $ sudo apt update
 $ sudo apt install software-properties-common
