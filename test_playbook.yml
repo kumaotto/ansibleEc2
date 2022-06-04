@@ -1,0 +1,22 @@
+---
+- hosts: webservers
+  remote_user: ansible
+  become: True
+  tasks:
+  # - name: create directory
+  #   file:
+  #     path: /home/ansible/tmp
+  #     state: directory
+  #     owner: ansible
+  #     mode: 0755
+
+  tasks:
+    - name: try ping
+      ping:
+
+  # - name: copiy file
+  #   copy:
+  #     src: /etc/hosts
+  #     dest: /etc/ansible/hosts
+  #     owner: ansible
+  #     mode: 0644
