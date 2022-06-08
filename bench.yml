@@ -1,6 +1,0 @@
----
-- hosts: benchservers
-  become: yes
-  roles:
-    - common
-    - bench

@@ -1,0 +1,21 @@
+---
+
+- name: "Install goenv"
+  become_user: isucon
+  command: >
+    git clone https://github.com/syndbg/goenv.git ~/.goenv
+
+- name: "Add PATH for Go"
+  become_user: isucon
+  blockinfile:
+    marker: "# {mark} ANSIBLE MANAGED BLOCK go"
+    path: /home/isucon/.bashrc
+    content: |
+      export GOENV_ROOT=$HOME/.goenv
+      export PATH=$GOENV_ROOT/bin:$PATH
+      eval "$(goenv init -)"
+
+- name: "Install Go v1.17.7"
+  become_user: isucon
+  command: >
+    goenv install 1.17.7
