@@ -1,0 +1,7 @@
+---
+- name: "Install MySQL"
+  become_user: isucon
+  command: |
+    apt update
+    apt install mysql-server
+    

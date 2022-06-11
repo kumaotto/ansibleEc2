@@ -1,5 +1,4 @@
 ---
-
 - name: "Install goenv"
   become_user: isucon
   command: >

@@ -1,0 +1,16 @@
+---
+- apt:
+    state: present
+    name: "{{item}}"
+  with_items:
+    - git
+    - sudo
+
+- user:
+  name: isucon
+
+- git:
+    repo: 'https://github.com/baby-someday/isucon7-qualify'  # レポジトリを指定する（var）
+    dest: /home/isucon/isubata   # /isucon/xxx xxxはサービス名
+    update: no
+  become_user: isucon
