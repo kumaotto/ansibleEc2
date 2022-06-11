@@ -1,20 +1,58 @@
 ---
-- name: "Install goenv"
-  become_user: isucon
-  command: >
-    git clone https://github.com/syndbg/goenv.git ~/.goenv
+# - name: "Install goenv"
+#   remote_user: isucon
+#   command: >
+#     git clone https://github.com/syndbg/goenv.git ~/.goenv
 
-- name: "Add PATH for Go"
-  become_user: isucon
-  blockinfile:
-    marker: "# {mark} ANSIBLE MANAGED BLOCK go"
-    path: /home/isucon/.bashrc
-    content: |
-      export GOENV_ROOT=$HOME/.goenv
-      export PATH=$GOENV_ROOT/bin:$PATH
-      eval "$(goenv init -)"
+# - name: "Add PATH for Go"
+#   remote_user: isucon
+#   become: True
+#   blockinfile:
+#     marker: "# {mark} ANSIBLE MANAGED BLOCK go"
+#     path: /home/isucon/.bashrc
+#     content: |
+#       export GOENV_ROOT=$HOME/.goenv
+#       export PATH=$GOENV_ROOT/bin:$PATH
+#       eval "$(goenv init -)"
 
-- name: "Install Go v1.17.7"
-  become_user: isucon
-  command: >
-    goenv install 1.17.7
+# - name: "Install Go v1.17.7"
+#   remote_user: isucon
+#   become: True
+#   command: >
+#     goenv install 1.17.7
+
+- name: unzip go 1.17.7
+  unarchive:
+    src: https://dl.google.com/go/go1.17.7.linux-amd64.tar.gz
+    dest: /usr/local
+    remote_src: yes
+  ignore_errors: yes
+ 
+- name: copy goenv.sh
+  copy:
+    src: "{{ item.src }}"
+    dest: "/etc/profile.d/{{ item.dest }}"
+    mode: 0755
+    backup: no
+    owner: root
+    group: root
+  loop:
+    - { src: roles/go/files/goenv.sh, dest: . }
+ 
+- name: source /etc/profile.d/goenv.sh
+  shell: bash -lc "source /etc/profile.d/goenv.sh"
+  ignore_errors: yes
+  
+# - name: go get 
+#   shell: >  
+#     bash -lc "go get -u github.com/volatiletech/sqlboiler";
+#     bash -lc "go get -u github.com/volatiletech/sqlboiler/drivers/sqlboiler-mysql";
+#     bash -lc "go get -u github.com/golang/dep/cmd/dep";
+#     bash -lc "go get -u github.com/tockins/realize";
+#   ignore_errors: yes
+
+# - name: "Install Go v1.17.7"
+#   remote_user: isucon
+#   become: True
+#   command: >
+#     goenv install 1.17.7
