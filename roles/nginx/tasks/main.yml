@@ -6,8 +6,7 @@
   with_items:
     - nginx
 
-- name: "Install nginx"
+- name: Install nginx
   command: >
-    apt-get upgrade
     apt-get -y install nginx
   notify: reload nginx
