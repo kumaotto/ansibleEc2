@@ -5,4 +5,4 @@
   become: True
   command: |
     apt-get -y install mysql-server mysql-client
-    
+    mysql_secure_installation
