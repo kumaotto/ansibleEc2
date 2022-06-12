@@ -1,6 +1,8 @@
 ---
 - hosts: dbserver
   become: yes
+  vars:
+    password: ubuntu
   roles:
     - common
     - db

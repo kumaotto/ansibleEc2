@@ -1,6 +1,8 @@
 ---
 - hosts: webservers
   become: yes
+  vars:
+    password: ubuntu
   roles:
     - common
     - go

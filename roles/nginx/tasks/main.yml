@@ -1,4 +1,5 @@
 ---
+
 - apt:
     state: present
     name: "{{item}}"
@@ -11,9 +12,3 @@
     apt-get -y install nginx
   ignore_errors: yes
   notify: reload nginx
-
-# - copy:
-#     src: /remote_user
-#     dest: /etc/nginx/sites-available
-#     remote_src: yes
-#   notify: reload nginx

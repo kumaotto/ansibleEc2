@@ -1,4 +1,5 @@
 ---
+
 - name: "Install MySQL"
   remote_user: ubuntu
   become: True
