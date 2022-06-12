@@ -33,7 +33,7 @@ sudo apt install ansible
 ```
 
 ### invetoryファイルを作成する
-inventoryファイルを作成し、3つのサーバのPublic IPを入力する
+inventoryファイルを作成し、3つのサーバのPublic IPを入力する\
 /inventory/inventory.ini
 ```shell
 [webservers]
