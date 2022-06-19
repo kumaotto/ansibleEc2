@@ -4,5 +4,4 @@
   remote_user: ubuntu
   become: True
   command: |
-    apt-get -y install mysql-server mysql-client
-    mysql_secure_installation
+    apt-get -y install mysql-client-core-5.7 mysql-server mysql-client

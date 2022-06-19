@@ -107,7 +107,7 @@ PrintMotd no
 #Banner none
 
 # Allow client to pass locale environment variables
-AcceptEnv ISUBATA_DB_HOST
+AcceptEnv ISUBATA_DB_HOST ISUBATA_DB_PASSWORD ISUBATA_DB_USER
 
 # override default of no subsystems
 Subsystem sftp /usr/lib/openssh/sftp-server
