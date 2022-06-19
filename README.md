@@ -2,9 +2,9 @@
 
 todo
 - [ ] 2台分を立ち上げる?
-- [ ] パスワード認証自動設定
+- [x] パスワード認証自動設定
 - [ ] postgresSQLの準備?
-- [ ] ユーザ指定をコマンドで行えるようにする
+- [x] ユーザ指定をコマンドで行えるようにする
 
 ## Ansible実行
 ```
@@ -13,6 +13,9 @@ ansible-playbook -i ./inventory/inventory.ini site.yml -u ubuntu
 
 // isuconユーザの場合
 ansible-playbook -i ./inventory/inventory.ini site.yml -u isucon
+
+// sudopassなしの場合
+ansible-playbook -i ./inventory/inventory.ini site.yml -u ubuntu　--extra-vars "ansible_Sudo_pass=yourPassword"
 ```
 
 ## 環境構築
