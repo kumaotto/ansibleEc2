@@ -15,7 +15,7 @@ ansible-playbook -i ./inventory/inventory.ini site.yml -u ubuntu
 ansible-playbook -i ./inventory/inventory.ini site.yml -u isucon
 
 // sudopassなしの場合
-ansible-playbook -i ./inventory/inventory.ini site.yml -u ubuntu　--extra-vars "ansible_Sudo_pass=yourPassword"
+ansible-playbook -i ./inventory/inventory.ini site.yml -u ubuntu --extra-vars "ansible_Sudo_pass=yourPassword"
 ```
 
 ## 環境構築

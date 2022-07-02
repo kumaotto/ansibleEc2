@@ -21,4 +21,3 @@
 - name: source /etc/profile.d/goenv.sh
   shell: bash -lc "source /etc/profile.d/goenv.sh"
   ignore_errors: yes
-  

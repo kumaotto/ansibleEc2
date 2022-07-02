@@ -1,0 +1,10 @@
+---
+
+# TODO] SET PrIVATE KEY
+- name: Set Github Private Key
+  stat:
+    path: 
+  copy:
+    src:
+    dest: ~/.ssh/
+    mode: 0600

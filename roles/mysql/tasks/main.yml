@@ -1,7 +1,29 @@
 ---
 
 - name: "Install MySQL"
-  remote_user: ubuntu
   become: True
-  command: |
-    apt-get -y install mysql-client-core-5.7 mysql-server mysql-client
+  shell: "DEBIAN_FRONTEND=noninteractive apt install -y mysql-server"
+
+- name: Uncomment A Line Bind-Address = 127.0.0.1
+  replace: >
+    dest=/etc/mysql/mysql.conf.d/mysqld.cnf
+    regexp='^bind-address'
+    replace='#bind-address'
+
+- name: Install pip
+  become: True
+  apt:
+    name: python3-pip
+    state: present
+    update_cache: yes
+
+- name: Install PyMySQL
+  pip:
+    name: pymysql
+    state: present
+
+- name: Create MySQL Database
+  mysql_db: name={{ mysql_database }} state=present login_host=% login_user=root login_unix_socket=/var/run/mysqld/mysqld.sock
+
+- name: Create MySQL User
+  mysql_user: login_host=% priv="{{ mysql_database }}.*:ALL" login_unix_socket=/var/run/mysqld/mysqld.sock name={{ mysql_user }} password={{ mysql_password }}

@@ -2,7 +2,7 @@
 
 - apt:
     state: present
-    name: "{{item}}"
+    name: "{{ item }}"
   with_items:
     - git
     - sudo
@@ -25,6 +25,4 @@
   copy:
     src: conf/sshd_config
     dest: /etc/ssh/sshd_config
-    owner: root
-    group: root
     mode: 0600
