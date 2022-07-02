@@ -10,6 +10,14 @@
     regexp='^bind-address'
     replace='#bind-address'
 
+- name: copy my.cnf
+  lineinfile:
+    dest=/etc/mysql/my.cnf
+    line={{ item }}
+  with_items:
+    - 'default-authentication-plugin=mysql_native_password'
+  notify: restart mysql
+
 - name: Install pip
   become: True
   apt:

@@ -3,6 +3,6 @@
 - name: restart mysql
   become: True
   service:
-    name: mysqld
-    state: started
+    name: mysql
+    state: restart
     enabled: true

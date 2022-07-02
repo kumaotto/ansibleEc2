@@ -10,3 +10,13 @@
   command: >
     apt-get -y install nginx
   notify: reload nginx
+
+- name: Copy nginx.conf
+  copy:
+    src: conf/nginx.conf
+    dest: /etc/nginx/
+
+- name: Copy default.conf
+  copy:
+    src: conf/default.conf
+    dest: /etc/nginx/sites-available/default

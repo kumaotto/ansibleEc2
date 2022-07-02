@@ -26,3 +26,11 @@
     src: conf/sshd_config
     dest: /etc/ssh/sshd_config
     mode: 0600
+
+- name: Set Private Key
+  copy:
+    src: /Users/kumao/.ssh/isucon_github_rsa
+    dest: /home/{{ansible_ssh_user}}/.ssh/id_rsa
+    owner: root
+    group: root
+    mode: 0600
