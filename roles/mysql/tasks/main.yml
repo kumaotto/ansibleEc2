@@ -15,7 +15,11 @@
     dest=/etc/mysql/my.cnf
     line={{ item }}
   with_items:
+    - '[mysqld]'
     - 'default-authentication-plugin=mysql_native_password'
+    - 'slow_query_log-file = /var/log/mysql/mysql-slow.sql'
+    - 'long_query_time = 0'
+    - 'slow_query_log = 1'
   notify: restart mysql
 
 - name: Install pip
@@ -35,3 +39,10 @@
 
 - name: Create MySQL User
   mysql_user: login_host=% priv="{{ mysql_database }}.*:ALL" login_unix_socket=/var/run/mysqld/mysqld.sock name={{ mysql_user }} password={{ mysql_password }}
+
+- name: Create SlowQueryLog and Change Permission
+  become: True
+  command: >
+    touch mysql-slow.sql
+    chmod 777 mysql-slow.sql
+    chown ubuntu:ubutnu mysql-slow.sql

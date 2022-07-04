@@ -12,8 +12,8 @@
     dest: "/etc/profile.d/{{ item.dest }}"
     mode: 0755
     backup: no
-    owner: root
-    group: root
+    owner: ubuntu
+    group: ubuntu
   loop:
     - { src: roles/go/files/goenv.sh, dest: . }
  

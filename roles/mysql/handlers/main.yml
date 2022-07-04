@@ -2,7 +2,4 @@
 
 - name: restart mysql
   become: True
-  service:
-    name: mysql
-    state: restart
-    enabled: true
+  command: service mysql restart

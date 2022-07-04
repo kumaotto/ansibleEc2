@@ -7,30 +7,34 @@
     - git
     - sudo
 
-- name: copy db_setenv.sh
+- name: Copy db_setenv.sh
   copy:
     src: "{{ item.src }}"
     dest: "/etc/profile.d/{{ item.dest }}"
     mode: 0755
     backup: no
-    owner: root
-    group: root
+    owner: ubuntu
+    group: ubuntu
   loop:
     - { src: roles/common/files/db_setenv.sh, dest: . }
 
-- name: execute /etc/profile.d/db_setenv.sh
+- name: Execute /etc/profile.d/db_setenv.sh
   shell: bash -lc "source /etc/profile.d/db_setenv.sh"
 
 - name: Set AcceptEnv
   copy:
     src: conf/sshd_config
     dest: /etc/ssh/sshd_config
+    owner: ubuntu
+    group: ubuntu
     mode: 0600
+  notify: restart ssh
 
 - name: Set Private Key
   copy:
-    src: /Users/kumao/.ssh/isucon_github_rsa
+    src: /Users/kumao/Downloads/id_rsa
     dest: /home/{{ansible_ssh_user}}/.ssh/id_rsa
-    owner: root
-    group: root
+    owner: ubuntu
+    group: ubuntu
     mode: 0600
+  notify: restart ssh

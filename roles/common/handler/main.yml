@@ -1,0 +1,5 @@
+---
+
+- name: restart ssh
+  become: True
+  command: /etc/init.d/ssh restart
