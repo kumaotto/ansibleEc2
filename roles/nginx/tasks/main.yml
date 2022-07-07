@@ -21,9 +21,16 @@
     src: conf/default.conf
     dest: /etc/nginx/sites-available/default
 
-- name: Change permission in access.log, error.log
+- name: Change permission in access.log
   become: True
-  command: >
-    chmod 777 /var/log/nginx/access.log
-    chmod 777 /var/log/nginx/error.log
-  
+  file:
+    path: /var/log/nginx/access.log
+    owner: "{{ansible_ssh_user}}"
+    group: "{{ansible_ssh_user}}"
+
+- name: Change permission in error.log
+  become: True
+  file:
+    path: /var/log/nginx/error.log
+    owner: "{{ansible_ssh_user}}"
+    group: "{{ansible_ssh_user}}"
