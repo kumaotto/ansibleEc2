@@ -42,7 +42,13 @@
 
 - name: Create SlowQueryLog and Change Permission
   become: True
-  command: >
-    touch mysql-slow.sql
-    chmod 777 mysql-slow.sql
-    chown ubuntu:ubutnu mysql-slow.sql
+  copy:
+    src: conf/mysql-slow.sql
+    dest: /var/log/mysql/
+    mode: 0777
+
+- name: create my.cnf in /home/ubuntu
+  become: True
+  copy:
+    src: conf/my.cnf
+    dest: /home/ubuntu/
