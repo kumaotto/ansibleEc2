@@ -17,7 +17,7 @@
   with_items:
     - '[mysqld]'
     - 'default-authentication-plugin=mysql_native_password'
-    - 'slow_query_log-file = /var/log/mysql/mysql-slow.sql'
+    - 'slow_query_log-file = /var/log/mysql/mysql-slow.log'
     - 'long_query_time = 0'
     - 'slow_query_log = 1'
   notify: restart mysql
@@ -42,7 +42,13 @@
 
 - name: Create SlowQueryLog and Change Permission
   become: True
-  command: >
-    touch mysql-slow.sql
-    chmod 777 mysql-slow.sql
-    chown ubuntu:ubutnu mysql-slow.sql
+  copy:
+    src: conf/mysql-slow.log
+    dest: /var/log/mysql/
+    mode: 0777
+
+- name: create my.cnf in /home/ubuntu
+  become: True
+  copy:
+    src: conf/my.cnf
+    dest: /home/ubuntu/
