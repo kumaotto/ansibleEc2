@@ -1,0 +1,14 @@
+---
+
+- name: Clone conf files
+  become: True
+  git:
+    repo: git@github.com:baby-someday/isucon12.git conf
+    dest: /conf
+    clone: yes
+    accept_hostkey: yes
+    version: master
+    force: yes
+    recursive: no
+    key_file: /Users/kumao/.ssh/id_isucon12_rsa
+    run_once: true

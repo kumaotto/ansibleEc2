@@ -1,12 +1,5 @@
 ---
 
-- apt:
-    state: present
-    name: "{{ item }}"
-  with_items:
-    - git
-    - sudo
-
 - name: Copy db_setenv.sh
   copy:
     src: "{{ item.src }}"

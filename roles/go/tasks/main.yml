@@ -20,3 +20,10 @@
 - name: source /etc/profile.d/goenv.sh
   shell: bash -lc "source /etc/profile.d/goenv.sh"
   ignore_errors: yes
+
+- name: Create /go dir
+  become: true
+  file:
+    path: /go
+    state: directory
+    mode: 0775
