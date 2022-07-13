@@ -1,0 +1,5 @@
+---
+
+- become: yes
+  roles:
+    - common-install
