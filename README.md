@@ -52,9 +52,8 @@ ansible_ssh_user=ubuntu
 ansible_ssh_private_key_file=  // プライベートKeyを入力
 ```
 
-### ubuntuユーザ以外で構成する場合
+### オプション：ubuntuユーザ以外で構成する場合
 /roles/*のファイルに存在する `remote_user` の記述を変更する\
-→ ユーザ名はコマンドで入力方向で修正中
 
 例) /roles/db/tasks/main.yml
 ```
